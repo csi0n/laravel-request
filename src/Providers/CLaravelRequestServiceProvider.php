@@ -24,7 +24,7 @@ class CLaravelRequestServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('csi0n.laravel.request', function () {
-            return new \App\Repositories\CLaravelRequestRepository();
+            return new \csi0n\Laravel\Request\Repositories\CLaravelRequestRepository();
         });
     }
 }
