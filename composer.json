@@ -1,0 +1,18 @@
+{
+    "name": "csi0n/laravel-request",
+    "description": "Simple management laravel validation.",
+    "keywords": ["laravel", "requests", "helper"],
+    "license": "MIT",
+    "authors": [{
+        "name": "csi0n",
+        "email": "chqssqll@gmail.com"
+    }],
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "csi0n\\Laravel\\Request\\": "src/"
+        }
+    }
+}
