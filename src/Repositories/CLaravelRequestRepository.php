@@ -17,34 +17,54 @@ class CLaravelRequestRepository
     protected $rule_patch   = [];
     protected $rule_delete  = [];
     protected $rule_options = [];
+    protected $rule_custom  = [];
+    protected $method;
 
     public function getCurrentRule()
     {
         $global  = $this->getRuleGlobal();
         $current = [];
-        switch (strtoupper(request()->method())) {
-            case 'GET':
-                $current = $this->getRuleGet();
-                break;
-            case 'POST':
-                $current = $this->getRulePost();
-                break;
-            case 'PUT':
-                $current = $this->getRulePut();
-                break;
-            case 'PATCH':
-                $current = $this->getRulePatch();
-                break;
-            case 'DELETE':
-                $current = $this->getRuleDelete();
-                break;
-            case 'OPTIONS':
-                $current = $this->getRuleOptions();
-                break;
-            default:
-                break;
+        if (request()->has('c_rule_method')) {
+            if (empty(request()->c_rule_method)) {
+                throw new \Exception('Rule Method Can\'t be empty');
+            }
+            return array_merge($global, $this->getRuleCustom());
+        } else {
+            switch (strtoupper(request()->method())) {
+                case 'GET':
+                    $current = $this->getRuleGet();
+                    break;
+                case 'POST':
+                    $current = $this->getRulePost();
+                    break;
+                case 'PUT':
+                    $current = $this->getRulePut();
+                    break;
+                case 'PATCH':
+                    $current = $this->getRulePatch();
+                    break;
+                case 'DELETE':
+                    $current = $this->getRuleDelete();
+                    break;
+                case 'OPTIONS':
+                    $current = $this->getRuleOptions();
+                    break;
+                default:
+                    break;
+            }
+            return array_merge($global, $current);
         }
-        return array_merge($global, $current);
+    }
+
+    public function CUSTOM($method, $rule_custom = [])
+    {
+        $this->method      = $method;
+        $this->rule_custom = $rule_custom;
+    }
+
+    public function getRuleCustom()
+    {
+        return $this->rule_custom;
     }
 
     /**

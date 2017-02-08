@@ -2,6 +2,7 @@
 
 namespace csi0n\Laravel\Request\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class CLaravelRequestServiceProvider extends ServiceProvider
@@ -13,7 +14,9 @@ class CLaravelRequestServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Blade::directive('crulemethod', function ($expression) {
+            return sprintf('<input type="hidden" name="c_rule_method" value=%s />', $expression);
+        });
     }
 
     /**
