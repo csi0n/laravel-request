@@ -39,14 +39,21 @@
     }
 ```
 ####使用方法
+
 app.php->providers中添加:
-```csi0n\Laravel\Request\Providers\CLaravelRequestServiceProvider::class```
+```
+csi0n\Laravel\Request\Providers\CLaravelRequestServiceProvider::class
+```
 
 app.php->aliases中添加:
-``` 'CRule' => csi0n\Laravel\Request\Facades\CLaravelRequestFacade::class ```
+```
+'CRule' => csi0n\Laravel\Request\Facades\CLaravelRequestFacade::class
+```
 
 使用的Request需要继承
-```csi0n\Laravel\Request\Requests\CLaravelRequest```
+```
+csi0n\Laravel\Request\Requests\CLaravelRequest
+```
 
 
 
