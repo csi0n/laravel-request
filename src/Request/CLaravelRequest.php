@@ -1,6 +1,6 @@
 <?php
 
-namespace csi0n\Laravel\Request\Requests;
+namespace csi0n\Laravel\Request\Request;
 
 use CRule;
 use Illuminate\Foundation\Http\FormRequest;
